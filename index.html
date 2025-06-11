@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulasi Antrian Layanan - Penjadwalan Proses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main-container">
+    <header>
+      <h1>Simulasi Antrian Layanan Pelanggan</h1>
+      <p>Simulasi penjadwalan: FIFO, SJF, Round Robin, SRJF</p>
+    </header>
+
+    <section class="form-section">
+      <h2>Input Data Pelanggan</h2>
+      <form id="inputForm">
+        <div class="input-grid">
+          <div class="input-group">
+            <label for="nama">Nama Pelanggan</label>
+            <input type="text" id="nama" placeholder="Contoh: Andi, Budi" required>
+          </div>
+          <div class="input-group">
+            <label for="arrival">Waktu Datang</label>
+            <input type="number" id="arrival" min="0" placeholder="Detik ke-berapa datang" required>
+          </div>
+          <div class="input-group">
+            <label for="durasi">Lama Pelayanan</label>
+            <input type="number" id="durasi" min="1" placeholder="Detik layanan" required>
+          </div>
+        </div>
+        <button type="submit" class="btn">Tambah ke Antrian</button>
+      </form>
+
+      <table id="inputTable">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Waktu Datang</th>
+            <th>Lama Pelayanan</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="control-section">
+      <h2>Pilih Metode Penjadwalan</h2>
+      <div class="control-grid">
+        <div class="input-group">
+          <label for="algoritma">Algoritma:</label>
+          <select id="algoritma">
+            <option value="fifo">FIFO (Antrian Masuk)</option>
+            <option value="sjf">SJF (Pekerjaan Singkat Dulu)</option>
+            <option value="rr">Round Robin (Bergiliran)</option>
+            <option value="srjf">SRJF (Preemptive)</option>
+          </select>
+        </div>
+        <div class="input-group" id="quantum-group" style="display: none;">
+          <label for="quantum">Quantum (untuk RR)</label>
+          <input type="number" id="quantum" min="1" value="2">
+        </div>
+      </div>
+      <div class="btn-group">
+        <button id="startSim" class="btn success">Mulai Simulasi</button>
+        <button id="resetSim" class="btn danger">Reset</button>
+      </div>
+    </section>
+
+    <section class="result-section">
+      <h2>Hasil Simulasi</h2>
+
+      <div id="ganttChart" class="gantt-chart">
+        <!-- Bar grafik Gantt akan muncul di sini -->
+      </div>
+
+      <table id="resultTable">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Waktu Datang</th>
+            <th>Lama Pelayanan</th>
+            <th>Selesai</th>
+            <th>Turnaround Time</th>
+            <th>Waiting Time</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="stats">
+        <p><strong>Rata-rata Waktu Tunggu:</strong> <span id="avgWT">-</span> detik</p>
+        <p><strong>Rata-rata Turnaround Time:</strong> <span id="avgTAT">-</span> detik</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Simulasi Penjadwalan Kehidupan Nyata oleh Kamu</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
